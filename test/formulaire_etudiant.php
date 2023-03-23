@@ -95,6 +95,7 @@ $insertion = $bdd->prepare("INSERT INTO etudiants (matricule, nom_etudiant, pren
 try{
     $insertion->execute(array($etudiant->getMatricule(), $etudiant->getNom(), $etudiant->getPrenom(), $etudiant->getNiveau(), $etudiant->getParcours(), $etudiant->getAdrEmail()));
     echo "enter with success";
+    $_POST = null;
 }
 catch (PDOException $e) {
     echo "Erreur : " . $e->getMessage();
