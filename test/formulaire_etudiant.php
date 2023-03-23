@@ -100,6 +100,7 @@ catch (PDOException $e) {
     echo "Erreur : " . $e->getMessage();
     die();
 }
+$bdd=null;
 ?>
     
 </body>
