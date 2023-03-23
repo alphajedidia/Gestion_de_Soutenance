@@ -65,7 +65,7 @@ $professeur = new Professeur($_POST['Id_prof'],$_POST['nom'],$_POST['prenom'],$_
 /* Préparation et exécution de la requête d'insertion */
 $insertion = $bdd->prepare("INSERT INTO professeurs (id_prof, nom_prof, prenom_prof, civilite, grade) VALUES (?, ?, ?, ?, ?)");
 try{
-    $insertion->execute(array($professeur->getId_prof(), $professeur->getNom(), $professeur->getPrenom(), $professeur->getCivilite()));
+    $insertion->execute(array($professeur->getId_prof(), $professeur->getNom(), $professeur->getPrenom(), $professeur->getCivilite(), $professeur->getGrade()));
     echo "enter with success";
     $_POST = null;
 }
