@@ -1,3 +1,8 @@
+<?php 
+require('Verification.php');
+$postIsDefine = verificate($_POST,['matricule','nom','prenom','niveau','parcours','adr_email']);
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -70,21 +75,23 @@ class Etudiant {
 		<input type="submit" value="Ajouter">
 	</form>
 <?php
-/* Récupération des données du formulaire */
-$etudiant = new Etudiant($_POST['matricule'],$_POST['nom'],$_POST['prenom'],$_POST['niveau'],$_POST['parcours'],$_POST['adr_email']);
+if($postIsDefine){
+    /* Récupération des données du formulaire */
+    $etudiant = new Etudiant($_POST['matricule'],$_POST['nom'],$_POST['prenom'],$_POST['niveau'],$_POST['parcours'],$_POST['adr_email']);
 
-/* Préparation et exécution de la requête d'insertion */
-$insertion = $bdd->prepare("INSERT INTO etudiants (matricule, nom_etudiant, prenom_etudiant, niveau, parcours, adr_email) VALUES (?, ?, ?, ?, ?, ?)");
-try{
-    $insertion->execute(array($etudiant->getMatricule(), $etudiant->getNom(), $etudiant->getPrenom(), $etudiant->getNiveau(), $etudiant->getParcours(), $etudiant->getAdrEmail()));
-    echo "enter with success";
-    $_POST = null;
+    /* Préparation et exécution de la requête d'insertion */
+    $insertion = $bdd->prepare("INSERT INTO etudiants (matricule, nom_etudiant, prenom_etudiant, niveau, parcours, adr_email) VALUES (?, ?, ?, ?, ?, ?)");
+    try{
+        $insertion->execute(array($etudiant->getMatricule(), $etudiant->getNom(), $etudiant->getPrenom(), $etudiant->getNiveau(), $etudiant->getParcours(), $etudiant->getAdrEmail()));
+        echo "enter with success";
+        $_POST = null;
+    }
+    catch (PDOException $e) {
+        echo "Erreur : " . $e->getMessage();
+        die();
+    }
+    $bdd=null;
 }
-catch (PDOException $e) {
-    echo "Erreur : " . $e->getMessage();
-    die();
-}
-$bdd=null;
 ?>
     
 </body>
