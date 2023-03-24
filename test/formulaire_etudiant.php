@@ -73,9 +73,6 @@ class Etudiant {
 		<label for="adr_email">Adresse e-mail :</label>
 		<input type="email" id="adr_email" name="adr_email" required><br><br>
 		<input type="submit" value="Ajouter">
-        <script>
-
-        </script>
 	</form>
 <?php
 if($postIsDefine){
