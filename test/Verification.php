@@ -6,6 +6,8 @@ function verificate($globalVariable,$variables){
     foreach($variables as $elem){
         if(isset($globalVariable[$elem])){
             $isDefine = true;
+        }else {
+            return false;
         }
     } 
     return $isDefine;
