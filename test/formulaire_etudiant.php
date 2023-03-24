@@ -91,6 +91,7 @@ if($postIsDefine){
         die();
     }
     $bdd=null;
+    
 }
 ?>
     
